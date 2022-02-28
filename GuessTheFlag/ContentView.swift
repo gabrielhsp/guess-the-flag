@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
-    var countries: [String] = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Russia", "Spain", "UK", "US"]
-    var correctAnswer: Int = Int.random(in: 0...2)
+    // MARK: - Property Wrappers
+    @State private var showingScore: Bool = false
+    @State private var scoreTitle: String = ""
+    @State private var countries: [String] = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Russia", "Spain", "UK", "US"].shuffled()
+    @State private var correctAnswer: Int = Int.random(in: 0...2)
     
+    // MARK: - UI Components
     var body: some View {
         ZStack {
             Color.blue
@@ -27,14 +31,34 @@ struct ContentView: View {
                 
                 ForEach(0..<3) { number in
                     Button {
-                        
+                        flagTapped(number)
                     } label: {
                         Image(countries[number])
                             .renderingMode(.original)
                     }
                 }
             }
+        }.alert(scoreTitle, isPresented: $showingScore) {
+            Button("Continue", action: askQuestion)
+        } message: {
+            Text("Your score is ???")
         }
+    }
+    
+    // MARK: - Methods
+    func flagTapped(_ number: Int) {
+        if number == correctAnswer {
+            scoreTitle = "Correct"
+        } else {
+            scoreTitle = "Wrong"
+        }
+        
+        showingScore = true
+    }
+    
+    func askQuestion() {
+        countries.shuffle()
+        correctAnswer = Int.random(in: 0...2)
     }
 }
 
