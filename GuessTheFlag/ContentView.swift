@@ -11,6 +11,7 @@ struct ContentView: View {
     // MARK: - Property Wrappers
     @State private var showingScore: Bool = false
     @State private var scoreTitle: String = ""
+    @State private var scoreMessage: String = ""
     @State private var gameScore: Int = 0
     @State private var countries: [String] = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Russia", "Spain", "UK", "US"].shuffled()
     @State private var correctAnswer: Int = Int.random(in: 0...2)
@@ -72,7 +73,7 @@ struct ContentView: View {
         }.alert(scoreTitle, isPresented: $showingScore) {
             Button("Continue", action: askQuestion)
         } message: {
-            Text("Your score is \(gameScore)")
+            Text(scoreMessage)
         }
     }
     
@@ -81,8 +82,10 @@ struct ContentView: View {
         if number == correctAnswer {
             gameScore += 1
             scoreTitle = "Correct"
+            scoreMessage = "Your score is \(gameScore)"
         } else {
             scoreTitle = "Wrong"
+            scoreMessage = "Wrong! That's the flag of \(countries[number])."
         }
         
         showingScore = true
