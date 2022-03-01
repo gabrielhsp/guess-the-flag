@@ -15,6 +15,11 @@ struct ContentView: View {
     @State private var gameScore: Int = 0
     @State private var countries: [Countries] = Countries.allCases.shuffled()
     @State private var correctAnswer: Int = Int.random(in: 0...2)
+    @State private var userGameTries: Int = 0
+    @State private var showEndingGame: Bool = false
+    
+    // MARK: - Properties
+    private let maxUserTries: Int = 8
     
     // MARK: - UI Components
     var body: some View {
@@ -70,15 +75,30 @@ struct ContentView: View {
                 Spacer()
             }
             .padding()
-        }.alert(scoreTitle, isPresented: $showingScore) {
+        }
+        .alert(scoreTitle, isPresented: $showingScore) {
             Button("Continue", action: askQuestion)
         } message: {
             Text(scoreMessage)
+        }
+        .alert("The game has ended", isPresented: $showEndingGame) {
+            Button("Reset game", role: .cancel, action: reset)
+        } message: {
+            Text("Congratulations! You're final score is \(gameScore). Reset the game to play again.")
         }
     }
     
     // MARK: - Methods
     func flagTapped(_ number: Int) {
+        updateGameScore(number)
+    }
+    
+    func askQuestion() {
+        countries.shuffle()
+        correctAnswer = Int.random(in: 0...2)
+    }
+    
+    func updateGameScore(_ number: Int) {
         if number == correctAnswer {
             gameScore += 1
             scoreTitle = "Correct"
@@ -88,12 +108,23 @@ struct ContentView: View {
             scoreMessage = "Wrong! That's the flag of \(countries[number])."
         }
         
-        showingScore = true
+        shouldEndGame()
     }
     
-    func askQuestion() {
-        countries.shuffle()
-        correctAnswer = Int.random(in: 0...2)
+    func shouldEndGame() {
+        userGameTries += 1
+        
+        if userGameTries == maxUserTries {
+            showEndingGame = true
+        } else {
+            showingScore = true
+        }
+    }
+    
+    func reset() {
+        userGameTries = 0
+        gameScore = 0
+        askQuestion()
     }
 }
 
