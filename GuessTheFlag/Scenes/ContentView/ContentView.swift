@@ -13,7 +13,7 @@ struct ContentView: View {
     @State private var scoreTitle: String = ""
     @State private var scoreMessage: String = ""
     @State private var gameScore: Int = 0
-    @State private var countries: [String] = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Russia", "Spain", "UK", "US"].shuffled()
+    @State private var countries: [Countries] = Countries.allCases.shuffled()
     @State private var correctAnswer: Int = Int.random(in: 0...2)
     
     // MARK: - UI Components
@@ -38,7 +38,7 @@ struct ContentView: View {
                             .font(.subheadline.weight(.heavy))
                             .foregroundStyle(.secondary)
                         
-                        Text(countries[correctAnswer])
+                        Text(countries[correctAnswer].rawValue)
                             .font(.largeTitle.weight(.semibold))
                     }
                     
@@ -46,7 +46,7 @@ struct ContentView: View {
                         Button {
                             flagTapped(number)
                         } label: {
-                            Image(countries[number])
+                            Image(countries[number].rawValue)
                                 .renderingMode(.original)
                                 .clipShape(Capsule())
                                 .shadow(radius: 5)
