@@ -12,6 +12,7 @@
 		9BB809AC27C6F07B007373C9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB809AB27C6F07B007373C9 /* ContentView.swift */; };
 		9BB809AE27C6F07C007373C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BB809AD27C6F07C007373C9 /* Assets.xcassets */; };
 		9BB809B127C6F07C007373C9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BB809B027C6F07C007373C9 /* Preview Assets.xcassets */; };
+		9BE7B06227E171EF00361FA8 /* FlagImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE7B06127E171EF00361FA8 /* FlagImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		9BB809AB27C6F07B007373C9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9BB809AD27C6F07C007373C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9BB809B027C6F07C007373C9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		9BE7B06127E171EF00361FA8 /* FlagImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +47,7 @@
 		9B8449B127CEBBDF00777149 /* ContentView */ = {
 			isa = PBXGroup;
 			children = (
+				9BE7B06027E171DF00361FA8 /* Components */,
 				9B8449B227CEBBEA00777149 /* Enumerators */,
 				9BB809AB27C6F07B007373C9 /* ContentView.swift */,
 			);
@@ -92,6 +95,14 @@
 				9BB809B027C6F07C007373C9 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		9BE7B06027E171DF00361FA8 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				9BE7B06127E171EF00361FA8 /* FlagImage.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,6 +178,7 @@
 				9BB809AC27C6F07B007373C9 /* ContentView.swift in Sources */,
 				9B8449B427CEBBF200777149 /* Countries.swift in Sources */,
 				9BB809AA27C6F07B007373C9 /* GuessTheFlagApp.swift in Sources */,
+				9BE7B06227E171EF00361FA8 /* FlagImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
